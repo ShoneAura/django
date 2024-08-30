@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block main %}
+
+<h2>{{ user.username }}</h2>
+<h2>{{ user.email }}</h2>
+<h2>{{ user.userprofile.bio }}</h2>
+
+<img src="{{ user.userprofile.photo.url }}" alt="slider item picture" name="" class="slider__list__item__img__pic">
+<a href="{% url 'request_friends' %}"><h2>Запросы в друзья ({{ user.user_to.count }})</h2></a>
+
+{% if not my_profile %}
+    <form action="{% url 'send_request_friends' user.pk %}" method="POST">
+        {% csrf_token %}
+        <button>Отправить запрос в друзья</button>
+    </form>
+{% endif %}
+<a href="{% url 'posts' %}"><h2>Мои посты</h2></a>
+<a href="{% url 'post_create' %}"><h2>Добавить пост</h2></a>
+
+{% endblock %}

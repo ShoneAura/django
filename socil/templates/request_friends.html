@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block main %}
+
+{% for user in request_users %}
+    <a href="{% url 'profile' user.user_from.pk %}"><h2>({{ user.user_from.username }})</h2></a>
+    <form action="{% url 'accept_request_friends' user.user_from.pk 'accept' %}" method="POST">
+        {% csrf_token %}
+        <button>Принять запрос</button>
+    </form>
+    <form action="{% url 'accept_request_friends' user.user_from.pk 'reject' %}" method="POST">
+        {% csrf_token %}
+        <button>Отклонить запрос</button>
+    </form>
+
+{% endfor %}
+{% endblock %}

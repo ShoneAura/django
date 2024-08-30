@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block main %}
+
+<h1>Friends</h1>
+{% for friend in friends %}
+    <a href="{% url 'profile' friend.user_from.pk %}"><h2>({{ friend.user_from.username }})</h2></a>
+
+{% endfor %}
+{% endblock %}
